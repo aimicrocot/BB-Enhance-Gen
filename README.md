@@ -17,7 +17,7 @@
 - Поддерживается OpenAI-compatible Custom API: свой URL, API-ключ и модель для быстрых служебных генераций.
 - Если Custom API недоступен, расширение использует основную генерацию SillyTavern.
 
-## Скриншот
+## Скриншоты
 
 <img width="1515" height="515" alt="BB Enhance Generation" src="https://github.com/user-attachments/assets/43dd5c57-cd97-4d7b-a69f-8ebc752d550f" />
 
