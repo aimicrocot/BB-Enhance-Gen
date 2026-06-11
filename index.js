@@ -29,6 +29,8 @@
         dir_absurd: `<context>\nProtagonist: {{user}} ({{persona}})\nScene: {{authorsNote}}\nStory Summary: {{summary}}\nPrevious Context: """{{lastMessage}}"""\n</context>\n\n<task>\nWrite the next segment of this story from the perspective of {{user}}. Introduce an ABSURD or COMEDIC EVENT.\n</task>\n\n<rules>\n1. Create a ridiculous misunderstanding, clumsy mistake, or awkwardly funny situational irony.\n2. STRICT IN-CHARACTER RULE: The humor must not break character logic. Show how serious characters react NATURALLY to the absurdity.\n3. Output ONLY the pure story text without meta-commentary.\n</rules>`,
 
         dir_tragedy: `<context>\nProtagonist: {{user}} ({{persona}})\nScene: {{authorsNote}}\nStory Summary: {{summary}}\nPrevious Context: """{{lastMessage}}"""\n</context>\n\n<task>\nWrite the next segment of this story from the perspective of {{user}}. Introduce a TRAGIC EVENT or SEVERE EMOTIONAL DAMAGE.\n</task>\n\n<rules>\n1. Create a terrible revelation, an irreversible mistake, a painful loss, or deep despair.\n2. Characters must react STRICTLY In-Character. Do not resolve it easily.\n3. Output ONLY the pure story text without meta-commentary.\n</rules>`,
+
+        dir_custom: `<context>\nProtagonist: {{user}} ({{persona}})\nScene: {{authorsNote}}\nStory Summary: {{summary}}\nPrevious Context: """{{lastMessage}}"""\n</context>\n\n<task>\nWrite the next segment of this story from the perspective of {{user}}. Follow this NARRATIVE DIRECTION from the author:\n"""{{customDirection}}"""\n</task>\n\n<rules>\n1. Follow the author's direction faithfully. Interpret it as a creative instruction for the next story beat.\n2. Use the current location, characters, and objects explicitly.\n3. STRICT IN-CHARACTER RULE: All characters must react according to their established personalities.\n4. Output ONLY the pure story text without meta-commentary.\n</rules>`,
         
         ft_analyzer: `<task>\nAnalyze the current roleplay context, character locations, and the user's intended action to determine if the user ({{user}}) can use Fast Travel, and suggest 3 destinations.\n</task>\n\n<context>\nRecent chat: """{{lastMessage}}"""\nUser's Intended Action: """{{input}}""" (If empty, assume user wants to travel away from their current location)\n</context>\n\n<rules>\n1. If the user is in battle, an important active dialogue, a lesson, or physically restrained, set "can_travel" to false and provide a "lock_reason" (in Russian).\n2. If the user is free to go, set "can_travel" to true and provide EXACTLY 3 logical "destinations" based on the world, time, and motives.\n3. Keep the "hook" descriptions VERY SHORT.\n4. Output STRICTLY as a raw JSON object starting with { and ending with }.\n5. DO NOT wrap the output in markdown code blocks.\n</rules>\n\n<format>\n{\n  "can_travel": true,\n  "lock_reason": "",\n  "destinations": [\n    { "name": "Название (Russian)", "hook": "Краткая причина.", "time_cost": "Время (напр. 15 мин)" }\n  ]\n}\n</format>`,
 
@@ -103,6 +105,10 @@
             dir_disaster: '💥 Disaster (Опасность)', dir_blessing: '🎁 Blessing (Удача)',
             dir_tension: '❤️ Tension (Напряжение)', dir_absurd: '🃏 Absurd (Комедия)',
             dir_tragedy: '💀 Tragedy (Трагедия)',
+            dir_custom: '✏️ Своё',
+            dir_custom_placeholder: 'Опишите направление для сюжета...',
+            dir_custom_next: 'Далее',
+            dir_custom_empty: 'Введите текст направления!',
             ft_title: '📍 БЫСТРОЕ ПЕРЕМЕЩЕНИЕ', ft_denied: '🚫 ДОСТУП ЗАКРЫТ',
             ft_denied_default: 'Вы не можете покинуть это место прямо сейчас.',
             ft_surprise: 'Случайное событие (Surprise me)', ft_cancel: 'Отмена', ft_ok: 'Понятно',
@@ -150,6 +156,10 @@
             dir_back: 'Back', dir_to_me: 'To me', dir_to_bot: 'To bot',
             dir_disaster: '💥 Disaster', dir_blessing: '🎁 Blessing', dir_tension: '❤️ Tension',
             dir_absurd: '🃏 Absurd', dir_tragedy: '💀 Tragedy',
+            dir_custom: '✏️ Custom',
+            dir_custom_placeholder: 'Describe the narrative direction...',
+            dir_custom_next: 'Next',
+            dir_custom_empty: 'Enter direction text first!',
             ft_title: '📍 FAST TRAVEL', ft_denied: '🚫 ACCESS DENIED',
             ft_denied_default: 'You cannot leave this place right now.',
             ft_surprise: 'Random event (Surprise me)', ft_cancel: 'Cancel', ft_ok: 'Got it',
@@ -192,6 +202,7 @@
     // === STATE ===
     let isBusy = false;
     let activeDirectorVibe = null;
+    let customDirectorText = '';
     let isPopupOpen = false;
     let customApiWarnedThisSession = false;
     let pendingBotResponse = false;
@@ -277,7 +288,7 @@
     // === ФУНКЦИЯ УМНОЙ ОЧИСТКИ (ЛАСТИК) ===
     function removeExtensionCues(text) {
         if (!text) return text;
-        const regex = /(?:\r?\n)*> (?:💥|🎁|❤️|🃏|💀|⏩|🎲|📍|⚡).*?<span style="display:none;">[\s\S]*?<\/span>\s*$/;
+        const regex = /(?:\r?\n)*> (?:💥|🎁|❤️|🃏|💀|📝|⏩|🎲|📍|⚡).*?<span style="display:none;">[\s\S]*?<\/span>\s*$/;
         return text.replace(regex, '').trim();
     }
 
@@ -629,7 +640,7 @@
 
         try {
             const recentMessages = buildRecentContext();
-            let promptRaw = TEMPLATES[type].replace('{{input}}', inputText).replace(/\{\{lastMessage\}\}/g, recentMessages);
+            let promptRaw = TEMPLATES[type].replace('{{input}}', inputText).replace(/\{\{lastMessage\}\}/g, recentMessages).replace('{{customDirection}}', customDirectorText || '');
             let finalPrompt = promptRaw;
 
             // @ts-ignore
@@ -640,7 +651,7 @@
             // Use fast API (Custom or main). Stream only when Custom API + streaming are enabled.
             const s = getSettings();
             const willStream = !!(s.useCustomApi && s.customApiUrl && s.customApiModel && s.enableStreaming);
-            // Director (Disaster/Blessing/Tension/Absurd/Tragedy) writes a full narrative segment — needs a bigger budget.
+            // Director (Disaster/Blessing/Tension/Absurd/Tragedy/Custom) writes a full narrative segment — needs a bigger budget.
             // Enhance / Improve only polish a short draft.
             const purpose = (typeof type === 'string' && type.startsWith('dir_')) ? 'director' : 'enhance';
             let result = await generateEnhanceFast(finalPrompt, willStream ? onChunk : undefined, purpose);
@@ -885,7 +896,9 @@
         // @ts-ignore
         const inputText = ta ? ta.value.trim() : '';
 
-        const cue = BOT_CUES[type];
+        const cue = type === 'dir_custom'
+            ? `\n\n> 📝 **Направление** <span style="display:none;">\n<system_note>\nNARRATIVE DIRECTION: ${customDirectorText}\n</system_note>\n</span>`
+            : BOT_CUES[type];
         const confirmed = await maybeShowCuePreview(cue);
         if (!confirmed) return;
 
@@ -920,9 +933,19 @@
             <button class="bb-eg-vibe-btn" data-vibe="dir_tension">❤️ Tension (Напряжение)</button>
             <button class="bb-eg-vibe-btn" data-vibe="dir_absurd">🃏 Absurd (Комедия)</button>
             <button class="bb-eg-vibe-btn" style="border-top: 1px dashed rgba(255, 255, 255, 0.1); margin-top: 4px; color: #ef4444;" data-vibe="dir_tragedy">💀 Tragedy (Трагедия)</button>
+            <button class="bb-eg-vibe-btn bb-eg-vibe-custom" style="border-top: 1px dashed rgba(255, 255, 255, 0.1); margin-top: 4px;" data-vibe="dir_custom">${t('dir_custom')}</button>
         `;
     }
     
+    function renderPopupCustomInput() {
+        return `
+            <button class="bb-eg-back-btn" data-back="vibes"><i class="fa-solid fa-arrow-left"></i> ${t('dir_back')}</button>
+            <div class="bb-eg-popup-header">${t('dir_custom')}</div>
+            <textarea class="bb-eg-custom-textarea" placeholder="${escapeHtml(t('dir_custom_placeholder'))}" rows="3"></textarea>
+            <button class="bb-eg-custom-next-btn">${t('dir_custom_next')}</button>
+        `;
+    }
+
     function renderPopupTargets() {
         return `
             <button class="bb-eg-back-btn"><i class="fa-solid fa-arrow-left"></i> Назад</button>
@@ -952,8 +975,44 @@
             // @ts-ignore
             const target = e.target.closest('button'); if (!target) return;
 
-            if (target.classList.contains('bb-eg-vibe-btn')) { activeDirectorVibe = target.getAttribute('data-vibe'); popup.innerHTML = renderPopupTargets(); } 
-            else if (target.classList.contains('bb-eg-back-btn')) { popup.innerHTML = renderPopupVibes(); }
+            if (target.classList.contains('bb-eg-vibe-btn')) {
+                activeDirectorVibe = target.getAttribute('data-vibe');
+                if (activeDirectorVibe === 'dir_custom') {
+                    customDirectorText = '';
+                    popup.innerHTML = renderPopupCustomInput();
+                    const ta = popup.querySelector('.bb-eg-custom-textarea');
+                    if (ta) requestAnimationFrame(() => ta.focus());
+                } else {
+                    customDirectorText = '';
+                    popup.innerHTML = renderPopupTargets();
+                }
+            }
+            else if (target.classList.contains('bb-eg-custom-next-btn')) {
+                const ta = popup.querySelector('.bb-eg-custom-textarea');
+                // @ts-ignore
+                const val = ta ? ta.value.trim() : '';
+                if (!val) {
+                    // @ts-ignore
+                    toastr.warning(t('dir_custom_empty'), 'BB Director');
+                    return;
+                }
+                customDirectorText = val;
+                popup.innerHTML = renderPopupTargets();
+            }
+            else if (target.classList.contains('bb-eg-back-btn')) {
+                if (target.getAttribute('data-back') === 'vibes') {
+                    popup.innerHTML = renderPopupVibes();
+                } else {
+                    // Back from target picker: go to custom input if custom, else vibes
+                    if (activeDirectorVibe === 'dir_custom') {
+                        popup.innerHTML = renderPopupCustomInput();
+                        const ta = popup.querySelector('.bb-eg-custom-textarea');
+                        if (ta && customDirectorText) { /** @type {HTMLTextAreaElement} */ (ta).value = customDirectorText; }
+                    } else {
+                        popup.innerHTML = renderPopupVibes();
+                    }
+                }
+            }
             else if (target.classList.contains('bb-eg-target-btn')) {
                 const targetType = target.getAttribute('data-target'); popup.classList.remove('show'); isPopupOpen = false;
                 if (targetType === 'me') handleGeneration(activeDirectorVibe, mainBtn); else if (targetType === 'bot') handleBotGeneration(activeDirectorVibe);

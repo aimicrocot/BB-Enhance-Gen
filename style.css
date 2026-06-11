@@ -117,6 +117,28 @@
 .bb-eg-back-btn { background: transparent; border: none; color: #6b7280; cursor: pointer; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; padding: 0; margin-bottom: 8px; width: fit-content; transition: color 0.2s; }
 .bb-eg-back-btn:hover { color: #d4af37; }
 
+/* Custom direction textarea & button */
+.bb-eg-custom-textarea {
+    width: 100%; min-width: 220px; box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px; padding: 8px 10px;
+    color: #e5e7eb; font-size: 12px; font-family: 'Georgia', serif;
+    line-height: 1.4; resize: vertical;
+    transition: border-color 0.2s ease;
+}
+.bb-eg-custom-textarea::placeholder { color: #6b7280; font-style: italic; }
+.bb-eg-custom-textarea:focus { outline: none; border-color: rgba(212, 175, 55, 0.5); }
+.bb-eg-custom-next-btn {
+    width: 100%; margin-top: 6px;
+    background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #d4af37; padding: 7px 10px; border-radius: 6px;
+    cursor: pointer; font-size: 11px; font-family: 'Georgia', serif;
+    font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px;
+    transition: all 0.2s ease;
+}
+.bb-eg-custom-next-btn:hover { background: #d4af37; color: #1a0f0f; box-shadow: 0 0 12px rgba(212, 175, 55, 0.35); }
+.bb-eg-vibe-custom { color: #d4af37 !important; }
+
 /* =========================================
    НАСТРОЙКИ РАСШИРЕНИЯ (В МЕНЮ ТАВЕРНЫ)
 ========================================= */
