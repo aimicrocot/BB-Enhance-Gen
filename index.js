@@ -1330,7 +1330,7 @@
         const html = `
             <div id="bb-eg-settings-container" class="inline-drawer">
                 <div class="inline-drawer-toggle inline-drawer-header">
-                    <b>🎬 Enhance Generation</b>
+                    <b>Enhance Generation</b>
                     <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
                 </div>
                 <div class="inline-drawer-content" style="padding: 10px;">
