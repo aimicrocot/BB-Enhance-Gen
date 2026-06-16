@@ -6,7 +6,7 @@
     display: inline-flex;
     align-items: center;
     z-index: 1001;
-    transform: translate(-2px); 
+    transform: translateY(-2px); 
 }
 
 #bb-eg-toggle-btn {
