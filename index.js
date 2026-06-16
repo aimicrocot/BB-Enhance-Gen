@@ -1316,18 +1316,10 @@
         if (optionsBtn && optionsBtn.parentNode) { optionsBtn.parentNode.insertBefore(wrapper, optionsBtn.nextSibling); } 
         else { const sendForm = document.getElementById('send_form'); if (sendForm && sendForm.parentNode) sendForm.parentNode.insertBefore(wrapper, sendForm); }
 
-        let isMenuOpen = false; 
         toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) { toolbar.classList.add('expanded'); toggleBtn.classList.add('active'); } 
-            else { toolbar.classList.remove('expanded'); toggleBtn.classList.remove('active'); }
+            e.stopPropagation(); e.preventDefault();
+            handleGeneration('enhance', toggleBtn);
         });
-
-        document.addEventListener('click', (e) => {
-            // @ts-ignore
-            if (isMenuOpen && !wrapper.contains(e.target)) { isMenuOpen = false; toolbar.classList.remove('expanded'); toggleBtn.classList.remove('active'); }
-        });
-
         updateToolbarVisibility();
     }
 
