@@ -6,15 +6,15 @@
     display: inline-flex;
     align-items: center;
     z-index: 1001;
-    transform: translateY(-2px); 
+    transform: translate(10 px, 2px); 
 }
 
 #bb-eg-toggle-btn {
     background: rgba(30, 30, 30, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: #9ca3af;
-    width: 22px;
-    height: 22px;
+    width: 23px;
+    height: 23px;
     display: flex;
     align-items: center;
     justify-content: center;
