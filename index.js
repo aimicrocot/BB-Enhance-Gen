@@ -289,7 +289,7 @@
     // === ФУНКЦИЯ УМНОЙ ОЧИСТКИ (ЛАСТИК) ===
     function removeExtensionCues(text) {
         if (!text) return text;
-        const regex = /(?:\r?\n)*> (?:💥|🎁|❤️|🃏|💀|📝|⏩|🎲|📍|⚡).*?<span style="display:none;">[\s\S]*?<\/span>\s*$/;
+        const regex = /(?:\r?\n)*> \*\*.*?<span style="display:none;">[\s\S]*?<\/span>\s*$/;
         return text.replace(regex, '').trim();
     }
 
@@ -1356,11 +1356,6 @@ document.addEventListener('click', (e) => {
         toolbar.classList.remove('expanded');
         toggleBtn.classList.remove('active');
     }
-});
-
-document.addEventListener('click', (e) => {
-    // @ts-ignore
-    if (isMenuOpen && !wrapper.contains(e.target)) { isMenuOpen = false; toolbar.classList.remove('expanded'); menuBtn.classList.remove('active'); }
 });
         updateToolbarVisibility();
     }
