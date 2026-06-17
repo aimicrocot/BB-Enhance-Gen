@@ -1373,7 +1373,7 @@ document.addEventListener('click', (e) => {
                 <div class="inline-drawer-content" style="padding: 10px;">
                     <div class="bb-eg-settings-panel" style="display: flex; flex-direction: column; gap: 8px;">
                         <details style="border: 1px solid #374151; border-radius: 6px; padding: 6px 8px;">
-                            <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">Промпт на улучшение</summary>
+                            <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">Промпт [Enhance]</summary>
                             <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
                                 <textarea id="bb-eg-cfg-enhance-prompt" class="text_pole" rows="10" placeholder="Оставьте пустым, чтобы использовать встроенный промпт..." style="font-size: 12px; line-height: 1.4; resize: vertical;">${escapeHtml(s.customEnhancePrompt || '')}</textarea>
                                 <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата. Если поле пустое — используется встроенный промпт.</span>
