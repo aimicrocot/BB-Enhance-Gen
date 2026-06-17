@@ -1379,7 +1379,6 @@ document.addEventListener('click', (e) => {
                                 <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата. Если поле пустое — используется встроенный промпт.</span>
                             </div>
                         </details>
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance"
                         <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance" ${s.btnEnhance ? 'checked' : ''}> <span>Показать [Enhance]</span></label>
                         <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-improve" ${s.btnImprove ? 'checked' : ''}> <span>Показать [Improve]</span></label>
                         <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-director" ${s.btnDirector ? 'checked' : ''}> <span>Показать [Event Director]</span></label>
