@@ -1316,16 +1316,44 @@
         if (optionsBtn && optionsBtn.parentNode) { optionsBtn.parentNode.insertBefore(wrapper, optionsBtn.nextSibling); } 
         else { const sendForm = document.getElementById('send_form'); if (sendForm && sendForm.parentNode) sendForm.parentNode.insertBefore(wrapper, sendForm); }
 
+        let isMenuOpen = false;
+        let longPressTimer = null;
+        let didLongPress = false;
+        
+        toggleBtn.addEventListener('pointerdown', (e) => {
+            didLongPress = false;
+            longPressTimer = setTimeout(() => {
+                didLongPress = true;
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    toolbar.classList.add('expanded');
+                    toggleBtn.classList.add('active');
+                } else {
+                    toolbar.classList.remove('expanded');
+                    toggleBtn.classList.remove('active');
+                }
+            }, 500);
+        });
+        
+        toggleBtn.addEventListener('pointerup', (e) => {
+            clearTimeout(longPressTimer);
+        });
+        
         toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); e.preventDefault();
+            e.stopPropagation();
+            e.preventDefault();
+            if (didLongPress) return;
             handleGeneration('enhance', toggleBtn);
         });
-        let isMenuOpen = false;
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) { toolbar.classList.add('expanded'); menuBtn.classList.add('active'); }
-                else { toolbar.classList.remove('expanded'); menuBtn.classList.remove('active'); }
-        });
+
+document.addEventListener('click', (e) => {
+    // @ts-ignore
+    if (isMenuOpen && !wrapper.contains(e.target)) {
+        isMenuOpen = false;
+        toolbar.classList.remove('expanded');
+        toggleBtn.classList.remove('active');
+    }
+});
 
 document.addEventListener('click', (e) => {
     // @ts-ignore
