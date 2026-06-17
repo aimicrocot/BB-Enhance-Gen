@@ -102,6 +102,6 @@ API-ключ Custom API сохраняется в настройках SillyTave
 ## Автор
 
 - [BruniikBron: Lo-Fi & Mods](https://bblofi.online/)
-- [Telegram](https://t.me/Brun11kBr0n)
-- [Оригинал](https://github.com/maxkara14/BB-Enhance-Gen)
+- [Telegram автора исходного расширения](https://t.me/Brun11kBr0n)
+- [Исходное расширение](https://github.com/maxkara14/BB-Enhance-Gen)
 
