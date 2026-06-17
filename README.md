@@ -16,7 +16,7 @@
 ## Пропмт
 <details>
 ```
-<context>
+   <context>
 Protagonist: {{user}} ({{persona}})
 Scene details: {{authorsNote}}
 Story Summary: {{summary}}
