@@ -13,10 +13,13 @@
 
 ---
 
-## Пропмт
+## Промпт
+
 <details>
-```
-   <context>
+<summary>Показать промпт</summary>
+
+```xml
+<context>
 Protagonist: {{user}} ({{persona}})
 Scene details: {{authorsNote}}
 Story Summary: {{summary}}
@@ -44,8 +47,9 @@ Expand the user's brief draft below into a rich, immersive, and highly detailed 
 <draft>
 {{input}}
 </draft>
-</details>
 ```
+
+</details>
 
 ---
 
