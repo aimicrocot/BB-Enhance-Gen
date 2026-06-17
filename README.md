@@ -7,9 +7,44 @@
 ## Зачем сделан форк
 
 - Добавлено окно промпта, в которое можно вписать свой кастомный промпт для улучшения черновика Enhance
+- Важно! Без промпта в этом окное Enhance работать не будет, ниже будет промпт, который использую я
 - Изменён дизайн и функционал кнопки `E`, теперь короткий тап запускает улучшение черновика Enhance, а долгий тап открывает меню, что раньше открывалось коротким тапом
 - Убраны везде эмодзи, регексы цепляются теперь за жирный шрифт
 
+---
+
+## Пропмт
+<details>
+<context>
+Protagonist: {{user}} ({{persona}})
+Scene details: {{authorsNote}}
+Story Summary: {{summary}}
+Last chat message: """{{lastMessage}}"""
+</context>
+
+<task>
+Expand the user's brief draft below into a rich, immersive, and highly detailed literary segment.
+</task>
+
+<rules>
+1. Expand actions with deep sensory details (sight, sound, smell, texture).
+2. Describe {{user}}'s internal thoughts, micro-expressions, and physical sensations.
+3. Polish {{user}}'s spoken dialogue to align perfectly with their personality.
+4. ONLY expand the current moment. DO NOT advance the plot.
+5. DO NOT speak, act, or react for other characters.
+6. LENGTH BUDGET: Keep the output proportional to the draft. Do not exceed ~2x the original length. Prefer one tight, vivid pass over multiple repetitive paragraphs. Avoid restating the same beat with different words.
+7. You MAY use HTML formatting if it matches the chat style. Output ONLY the raw expanded story text. Absolutely no conversational filler, greetings, or meta-commentary. Do not use markdown code blocks (`).
+8. Never describe {{user}}'s appearance or repeat traits that are already known, obvious, or previously established. Only mention details that are essential to the scene and have noticeably changed.
+9. Write using affirmative statements. Never use negative constructions such as "he didn't say" or "he didn't do." Instead, describe what was said, done, or observed.
+10. Always combine ideas into long, natural, smoothly flowing sentences. Make generous use of commas, conjunctions, and connecting words such as "and," "but," "as," "while," "still," and similar transitions to create an organic rhythm.
+11. Each paragraph must contain at least several sentences. Avoid one-sentence paragraphs.
+</rules>
+
+<draft>
+{{input}}
+</draft>
+</details>
+   
 ---
 
 ## Что умеет
