@@ -1377,12 +1377,20 @@ document.addEventListener('click', (e) => {
                 </div>
                 <div class="inline-drawer-content" style="padding: 10px;">
                     <div class="bb-eg-settings-panel" style="display: flex; flex-direction: column; gap: 8px;">
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance" ${s.btnEnhance ? 'checked' : ''}> <span>Показать [✨ Enhance]</span></label>
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-improve" ${s.btnImprove ? 'checked' : ''}> <span>Показать [🔮 Improve]</span></label>
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-director" ${s.btnDirector ? 'checked' : ''}> <span>Показать [🎬 Event Director]</span></label>
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-dice" ${s.btnDice ? 'checked' : ''}> <span>Показать [🎲 Action Roll]</span></label>
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-ft" ${s.btnFastTravel ? 'checked' : ''}> <span>Показать [📍 Fast Travel]</span></label>
-                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-ts" ${s.btnTimeSkip ? 'checked' : ''}> <span>Показать [⏩ Time Skip]</span></label>
+                        <details style="border: 1px solid #374151; border-radius: 6px; padding: 6px 8px;">
+                            <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">Промпт на улучшение</summary>
+                            <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
+                                <textarea id="bb-eg-cfg-enhance-prompt" class="text_pole" rows="10" placeholder="Оставьте пустым, чтобы использовать встроенный промпт..." style="font-size: 12px; line-height: 1.4; resize: vertical;">${escapeHtml(s.customEnhancePrompt || '')}</textarea>
+                                <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата. Если поле пустое — используется встроенный промпт.</span>
+                            </div>
+                        </details>
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance"
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance" ${s.btnEnhance ? 'checked' : ''}> <span>Показать [Enhance]</span></label>
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-improve" ${s.btnImprove ? 'checked' : ''}> <span>Показать [Improve]</span></label>
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-director" ${s.btnDirector ? 'checked' : ''}> <span>Показать [Event Director]</span></label>
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-dice" ${s.btnDice ? 'checked' : ''}> <span>Показать [Action Roll]</span></label>
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-ft" ${s.btnFastTravel ? 'checked' : ''}> <span>Показать [Fast Travel]</span></label>
+                        <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-ts" ${s.btnTimeSkip ? 'checked' : ''}> <span>Показать [Time Skip]</span></label>
                     </div>
 
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
