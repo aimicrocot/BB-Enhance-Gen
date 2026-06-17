@@ -10,9 +10,6 @@
 }
 
 #bb-eg-toggle-btn {
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
     background: rgba(30, 30, 30, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: #9ca3af;
