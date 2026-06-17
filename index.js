@@ -964,7 +964,7 @@
     function buildDirectorPopup() {
         const wrap = document.createElement('div'); wrap.className = 'bb-eg-director-wrap'; wrap.id = 'bb-eg-director-wrap';
         const mainBtn = document.createElement('button'); mainBtn.className = 'bb-eg-btn'; mainBtn.id = 'bb-eg-btn-director'; 
-        mainBtn.innerHTML = '🎬 Event Director';
+        mainBtn.innerHTML = 'Event Director';
         
         const popup = document.createElement('div'); popup.className = 'bb-eg-popup'; popup.id = 'bb-eg-popup';
         popup.innerHTML = renderPopupVibes();
