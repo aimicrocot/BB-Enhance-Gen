@@ -1287,7 +1287,8 @@
         if (document.getElementById('bb-enhance-wrapper')) return;
 
         const wrapper = document.createElement('div'); wrapper.id = 'bb-enhance-wrapper';
-        const toggleBtn = document.createElement('div'); toggleBtn.id = 'bb-eg-toggle-btn'; toggleBtn.innerHTML = 'E'; toggleBtn.title = t('toggle_title');
+        const toggleBtn = document.createElement('button'); toggleBtn.id = 'bb-eg-toggle-btn'; toggleBtn.innerHTML = 'E'; toggleBtn.title = t('btn_enhance');
+        const menuBtn = document.createElement('button'); menuBtn.id = 'bb-eg-menu-btn'; menuBtn.innerHTML = '...'; menuBtn.title = t('toggle_title');
         const toolbar = document.createElement('div'); toolbar.id = 'bb-enhance-toolbar';
 
         const btnE = document.createElement('button'); btnE.className = 'bb-eg-btn'; btnE.id = 'bb-eg-btn-enhance'; btnE.innerHTML = t('btn_enhance');
@@ -1310,7 +1311,7 @@
         const btnHist = document.createElement('button'); btnHist.className = 'bb-eg-btn bb-eg-btn-history'; btnHist.id = 'bb-eg-btn-history'; btnHist.innerHTML = t('btn_history');
         btnHist.onclick = (e) => { e.preventDefault(); showRollHistory(); }; toolbar.appendChild(btnHist);
 
-        wrapper.appendChild(toggleBtn); wrapper.appendChild(toolbar);
+        wrapper.appendChild(toggleBtn); wrapper.appendChild(menuBtn); wrapper.appendChild(toolbar);
 
         const optionsBtn = document.getElementById('options_button');
         if (optionsBtn && optionsBtn.parentNode) { optionsBtn.parentNode.insertBefore(wrapper, optionsBtn.nextSibling); } 
@@ -1320,6 +1321,17 @@
             e.stopPropagation(); e.preventDefault();
             handleGeneration('enhance', toggleBtn);
         });
+        let isMenuOpen = false;
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) { toolbar.classList.add('expanded'); menuBtn.classList.add('active'); }
+                else { toolbar.classList.remove('expanded'); menuBtn.classList.remove('active'); }
+        });
+
+document.addEventListener('click', (e) => {
+    // @ts-ignore
+    if (isMenuOpen && !wrapper.contains(e.target)) { isMenuOpen = false; toolbar.classList.remove('expanded'); menuBtn.classList.remove('active'); }
+});
         updateToolbarVisibility();
     }
 
