@@ -87,7 +87,7 @@
             btn_enhance: '✨ Enhance', btn_improve: '🔮 Improve', btn_director: '🎬 Event Director',
             btn_dice: '🎲 Action Roll', btn_ft: '📍 Fast Travel', btn_ts: '⏩ Time Skip',
             btn_history: '📜 История', toggle_title: 'BB Enhance Panel',
-            loading: '⏳ Загрузка...', scanning: '⏳ Скан...', analyzing: '⏳ Анализ...', rolling: '⏳ Бросок...',
+            // loading: '⏳ Загрузка...', scanning: '⏳ Скан...', analyzing: '⏳ Анализ...', rolling: '⏳ Бросок...',
             toast_need_input: 'Сначала напиши текст в поле ввода!',
             toast_busy: 'Подождите, идёт генерация...',
             toast_done: 'Готово!', toast_empty_response: 'Ошибка генерации: API вернуло пустой ответ.',
