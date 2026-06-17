@@ -79,6 +79,7 @@
         maxTokensEnhance: 1500,   // Enhance / Improve: polish a short draft.
         maxTokensContext: 2000,   // Fast Travel / Time Skip: small JSON answer.
         maxTokensMicro: 500,      // Action Roll question (one short line).
+        customEnhancePrompt: '',
     };
 
     // === I18N ===
@@ -639,7 +640,11 @@
 
         try {
             const recentMessages = buildRecentContext();
-            let promptRaw = TEMPLATES[type].replace('{{input}}', inputText).replace(/\{\{lastMessage\}\}/g, recentMessages).replace('{{customDirection}}', customDirectorText || '');
+            const s2 = getSettings();
+            const useCustomPrompt = type === 'enhance' && s2.customEnhancePrompt && s2.customEnhancePrompt.trim();
+            let promptRaw = useCustomPrompt
+                ? s2.customEnhancePrompt.replace('{{input}}', inputText).replace(/\{\{lastMessage\}\}/g, recentMessages)
+                : TEMPLATES[type].replace('{{input}}', inputText).replace(/\{\{lastMessage\}\}/g, recentMessages).replace('{{customDirection}}', customDirectorText || '');
             let finalPrompt = promptRaw;
 
             // @ts-ignore
@@ -1519,6 +1524,11 @@ document.addEventListener('click', (e) => {
                     saveSettings();
                 });
             }
+
+            $('#bb-eg-cfg-enhance-prompt').on('input', function() {
+                getSettings().customEnhancePrompt = String($(this).val());
+                saveSettings();
+            });
 
 
             $('#bb-eg-btn-connect').on('click', async function() {
