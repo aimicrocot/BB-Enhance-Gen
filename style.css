@@ -13,9 +13,9 @@
     appearance: none;
     -webkit-appearance: none;
     outline: none;
-    background: rgba(30, 30, 30, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #9ca3af;
+    background: var(--SmartThemeBlurTintColor, rgba(30, 30, 30, 0.7));
+    border: 1px solid var(--SmartThemeBorderColor, rgba(255, 255, 255, 0.15));
+    color: var(--SmartThemeBodyColor, #9ca3af);
     width: 20px;
     height: 20px;
     display: flex;
@@ -27,12 +27,22 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px var(--SmartThemeShadowColor, rgba(0,0,0,0.3));
     user-select: none;
 }
 
-#bb-eg-toggle-btn:hover { color: #fff; background: rgba(50, 50, 50, 0.9); border-color: rgba(212, 175, 55, 0.4); }
-#bb-eg-toggle-btn.active { color: #000; background: #d4af37; border-color: #d4af37; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+#bb-eg-toggle-btn:hover {
+    color: var(--SmartThemeQuoteColor, #fff);
+    background: var(--SmartThemeBlurTintColor, rgba(50, 50, 50, 0.9));
+    border-color: var(--SmartThemeQuoteColor, rgba(212, 175, 55, 0.4));
+    filter: brightness(1.3);
+}
+#bb-eg-toggle-btn.active {
+    color: var(--SmartThemeBlurTintColor, #000);
+    background: var(--SmartThemeQuoteColor, #d4af37);
+    border-color: var(--SmartThemeQuoteColor, #d4af37);
+    box-shadow: 0 0 10px var(--SmartThemeQuoteColor, rgba(212, 175, 55, 0.3));
+}
 
 #bb-eg-menu-btn {
     background: rgba(30, 30, 30, 0.7);
