@@ -6,7 +6,29 @@
     display: inline-flex;
     align-items: center;
     z-index: 1001;
-    transform: translate(10 px, 2px);
+    transform: translate(10px, 2px);
+}
+
+#bb-eg-toggle-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    background: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #9ca3af;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    user-select: none;
 }
 
 #bb-eg-toggle-btn:hover { color: #fff; background: rgba(50, 50, 50, 0.9); border-color: rgba(212, 175, 55, 0.4); }
