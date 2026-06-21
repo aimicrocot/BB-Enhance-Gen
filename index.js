@@ -1397,8 +1397,8 @@ document.addEventListener('click', (e) => {
                     
                     <div id="bb-eg-custom-api-block" style="display: ${s.useCustomApi ? 'flex' : 'none'}; flex-direction: column; gap: 8px; margin-top: 8px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
                         <input type="text" id="bb-eg-cfg-url" class="text_pole" placeholder="URL: http://example:1234/v1" value="${s.customApiUrl || ''}">
-                        <input type="password" id="bb-eg-cfg-key" class="text_pole" placeholder="API Ключ" value="${s.custПодключиться</button>omApiKey || ''}">
-                        <button id="bb-eg-btn-connect" class="menu_button" style="display: flex; align-items: center; justify-content: center; text-align: center;">Подключиться</button>
+                        <input type="password" id="bb-eg-cfg-key" class="text_pole" placeholder="API Ключ" value="${s.customApiKey || ''}">
+                        <button id="bb-eg-btn-connect" class="menu_button" style="display: flex; align-items: center; justify-content: center; text-align: center;">Подключиться / Обновить</button>
                         <select id="bb-eg-cfg-model" class="text_pole" ${!s.customApiModel ? 'disabled' : ''}>
                             <option value="${s.customApiModel || ''}">${s.customApiModel || 'Модели не загружены'}</option>
                         </select>
