@@ -1376,7 +1376,7 @@ document.addEventListener('click', (e) => {
                             <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">Промпт [Enhance]</summary>
                             <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
                                 <textarea id="bb-eg-cfg-enhance-prompt" class="text_pole" rows="10" placeholder="Оставьте пустым, чтобы использовать встроенный промпт..." style="font-size: 12px; line-height: 1.4; resize: vertical;">${escapeHtml(s.customEnhancePrompt || '')}</textarea>
-                                <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата. Если поле пустое — используется встроенный промпт.</span>
+                                <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата.</span>
                             </div>
                         </details>
                         <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance" ${s.btnEnhance ? 'checked' : ''}> <span>Показать [Enhance]</span></label>
