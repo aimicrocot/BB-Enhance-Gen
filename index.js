@@ -1039,6 +1039,7 @@
         const inputText = ta ? ta.value.trim() : '';
 
         btnElement.classList.add('loading');
+        const oldHtml = btnElement.innerHTML;
         btnElement.innerHTML = `<span>${t('scanning')}</span>`;
 
         try {
