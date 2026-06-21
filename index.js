@@ -1567,7 +1567,7 @@ document.addEventListener('click', (e) => {
                     // @ts-ignore
                     toastr.error(t('toast_err_generic') + e.message, 'BB Enhance');
                 } finally {
-                    btn.html('<i class="fa-solid fa-plug"></i>&nbsp; Connect');
+                    btn.html('Подключиться');
                 }
             });
         }
