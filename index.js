@@ -608,6 +608,7 @@
 
         btnElement.classList.add('loading');
         const oldHtml = btnElement.innerHTML;
+        btnElement.innerHTML = `<span>${t('scanning')}</span>`;
 
         // Preserve the user's original input so we can show streaming progress without
         // losing it on errors. The textarea is cleared only when we have first content.
