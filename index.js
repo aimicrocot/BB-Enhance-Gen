@@ -124,7 +124,7 @@
             set_extras_title: 'Дополнительно:',
             set_show_preview: 'Показывать предпросмотр подсказки для бота',
             set_ask_diff_every_time: 'Каждый раз спрашивать сложность',
-            set_max_tokens_group: 'Лимиты длины ответа (max_tokens) для Custom API',
+            set_max_tokens_group: 'Лимиты длины ответа max_tokens Custom API',
             set_max_tokens_hint: '0 — без ограничения. Иначе значение зажимается в [64..8000]. Касается только Custom API.',
             set_max_tokens_director: 'Режиссёр → «Мне» (художественный сегмент)',
             set_max_tokens_enhance: 'Enhance / Improve',
