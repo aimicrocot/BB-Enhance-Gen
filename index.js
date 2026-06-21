@@ -1376,7 +1376,7 @@ document.addEventListener('click', (e) => {
                             <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">Промпт [Enhance]</summary>
                             <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
                                 <textarea id="bb-eg-cfg-enhance-prompt" class="text_pole" rows="10" placeholder="Оставьте пустым, чтобы использовать встроенный промпт..." style="font-size: 12px; line-height: 1.4; resize: vertical;">${escapeHtml(s.customEnhancePrompt || '')}</textarea>
-                                <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата.</span>
+                                <span style="font-size: 11px; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата.</span>
                             </div>
                         </details>
                         <label class="checkbox_label"><input type="checkbox" id="bb-eg-cfg-enhance" ${s.btnEnhance ? 'checked' : ''}> <span>Показать [Enhance]</span></label>
@@ -1402,7 +1402,7 @@ document.addEventListener('click', (e) => {
                         <select id="bb-eg-cfg-model" class="text_pole" ${!s.customApiModel ? 'disabled' : ''}>
                             <option value="${s.customApiModel || ''}">${s.customApiModel || 'Модели не загружены'}</option>
                         </select>
-                        <span style="font-size: 10px; color: #94a3b8; line-height: 1.2;">* Работает по стандарту OpenAI. Идеально для Flash-моделей.</span>
+                        <span style="font-size: 10px; line-height: 1.2;">* Работает по стандарту OpenAI. Идеально для Flash-моделей.</span>
                         <span style="font-size: 11px; color: #f59e0b; line-height: 1.3;">${escapeHtml(t('set_security_warn'))}</span>
                     </div>
 
@@ -1449,7 +1449,7 @@ document.addEventListener('click', (e) => {
                                 <span style="font-size: 12px; color: #cbd5e1;">${escapeHtml(t('set_max_tokens_micro'))}</span>
                                 <input type="number" id="bb-eg-cfg-mt-micro" class="text_pole" min="0" max="8000" step="100" value="${Number.isFinite(Number(s.maxTokensMicro)) ? Number(s.maxTokensMicro) : 500}">
                             </label>
-                            <span style="font-size: 11px; color: #94a3b8; line-height: 1.3;">${escapeHtml(t('set_max_tokens_hint'))}</span>
+                            <span style="font-size: 11px; line-height: 1.3;">${escapeHtml(t('set_max_tokens_hint'))}</span>
                         </div>
                     </details>
                 </div>
