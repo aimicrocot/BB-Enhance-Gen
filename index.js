@@ -1373,7 +1373,7 @@ document.addEventListener('click', (e) => {
                 </div>
                 <div class="inline-drawer-content" style="padding: 10px;">
                     <div class="bb-eg-settings-panel" style="display: flex; flex-direction: column; gap: 8px;">
-                        <details style="border: 1px solid #374151; border-radius: 6px; padding: 6px 8px;">
+                        <details style="border: 1px; border-radius: 6px; padding: 6px 8px;">
                             <summary style="cursor: pointer; font-size: 13px; font-weight: bold;">Промпт [Enhance]</summary>
                             <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
                                 <textarea id="bb-eg-cfg-enhance-prompt" class="text_pole" rows="10" placeholder="Оставьте пустым, чтобы использовать встроенный промпт..." style="font-size: 12px; line-height: 1.4; resize: vertical;">${escapeHtml(s.customEnhancePrompt || '')}</textarea>
@@ -1431,7 +1431,7 @@ document.addEventListener('click', (e) => {
                         <input type="checkbox" id="bb-eg-cfg-askdiff" ${s.askDifficultyEveryTime ? 'checked' : ''}>
                         <span>${escapeHtml(t('set_ask_diff_every_time'))}</span>
                     </label>
-                    <details style="margin-top: 8px; border: 1px solid #374151; border-radius: 6px; padding: 6px 8px;">
+                    <details style="margin-top: 8px; border: 1px; border-radius: 6px; padding: 6px 8px;">
                         <summary style="cursor: pointer; font-size: 13px; color: font-weight: bold;">${escapeHtml(t('set_max_tokens_group'))}</summary>
                         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
                             <label style="display: flex; flex-direction: column; gap: 2px;">
