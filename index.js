@@ -1373,7 +1373,7 @@ document.addEventListener('click', (e) => {
                 <div class="inline-drawer-content" style="padding: 10px;">
                     <div class="bb-eg-settings-panel" style="display: flex; flex-direction: column; gap: 8px;">
                         <details style="border: 1px solid #374151; border-radius: 6px; padding: 6px 8px;">
-                            <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">Промпт [Enhance]</summary>
+                            <summary style="cursor: pointer; font-size: 13px; font-weight: bold;">Промпт [Enhance]</summary>
                             <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
                                 <textarea id="bb-eg-cfg-enhance-prompt" class="text_pole" rows="10" placeholder="Оставьте пустым, чтобы использовать встроенный промпт..." style="font-size: 12px; line-height: 1.4; resize: vertical;">${escapeHtml(s.customEnhancePrompt || '')}</textarea>
                                 <span style="font-size: 11px; line-height: 1.3;">Используйте {{input}} для черновика юзера и {{lastMessage}} для контекста чата.</span>
@@ -1389,7 +1389,7 @@ document.addEventListener('click', (e) => {
 
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
                 
-                    <span style="font-size: 13px; color: #cbd5e1; font-weight:bold;">Custom API (Для быстрой генерации):</span>
+                    <span style="font-size: 13px; font-weight:bold;">Custom API (Для быстрой генерации):</span>
                     <label class="checkbox_label" style="margin-top: 5px;">
                         <input type="checkbox" id="bb-eg-cfg-usecustom" ${s.useCustomApi ? 'checked' : ''}>
                         <span>Использовать свой API-ключ</span>
@@ -1407,7 +1407,7 @@ document.addEventListener('click', (e) => {
                     </div>
 
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
-                    <span style="font-size: 13px; color: #cbd5e1; font-weight:bold;">${escapeHtml(t('set_extras_title'))}</span>
+                    <span style="font-size: 13px; font-weight:bold;">${escapeHtml(t('set_extras_title'))}</span>
                     <label class="checkbox_label" style="margin-top: 5px;">
                         <input type="checkbox" id="bb-eg-cfg-preview" ${s.showCuePreview ? 'checked' : ''}>
                         <span>${escapeHtml(t('set_show_preview'))}</span>
@@ -1417,7 +1417,7 @@ document.addEventListener('click', (e) => {
                         <span>${escapeHtml(t('set_streaming'))}</span>
                     </label>
                     <label style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;">
-                        <span style="font-size: 12px; color: #cbd5e1;">${escapeHtml(t('set_default_diff'))}</span>
+                        <span style="font-size: 12px; ">${escapeHtml(t('set_default_diff'))}</span>
                         <select id="bb-eg-cfg-diff" class="text_pole" ${s.askDifficultyEveryTime ? 'disabled' : ''}>
                             <option value="easy" ${s.defaultDifficulty === 'easy' ? 'selected' : ''}>${escapeHtml(t('diff_easy'))} (DC 8)</option>
                             <option value="normal" ${s.defaultDifficulty === 'normal' ? 'selected' : ''}>${escapeHtml(t('diff_normal'))} (DC 12)</option>
@@ -1431,22 +1431,22 @@ document.addEventListener('click', (e) => {
                         <span>${escapeHtml(t('set_ask_diff_every_time'))}</span>
                     </label>
                     <details style="margin-top: 8px; border: 1px solid #374151; border-radius: 6px; padding: 6px 8px;">
-                        <summary style="cursor: pointer; font-size: 13px; color: #cbd5e1; font-weight: bold;">${escapeHtml(t('set_max_tokens_group'))}</summary>
+                        <summary style="cursor: pointer; font-size: 13px; color: font-weight: bold;">${escapeHtml(t('set_max_tokens_group'))}</summary>
                         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
                             <label style="display: flex; flex-direction: column; gap: 2px;">
-                                <span style="font-size: 12px; color: #cbd5e1;">${escapeHtml(t('set_max_tokens_director'))}</span>
+                                <span style="font-size: 12px; ">${escapeHtml(t('set_max_tokens_director'))}</span>
                                 <input type="number" id="bb-eg-cfg-mt-director" class="text_pole" min="0" max="8000" step="100" value="${Number.isFinite(Number(s.maxTokensDirector)) ? Number(s.maxTokensDirector) : 5000}">
                             </label>
                             <label style="display: flex; flex-direction: column; gap: 2px;">
-                                <span style="font-size: 12px; color: #cbd5e1;">${escapeHtml(t('set_max_tokens_enhance'))}</span>
+                                <span style="font-size: 12px; ">${escapeHtml(t('set_max_tokens_enhance'))}</span>
                                 <input type="number" id="bb-eg-cfg-mt-enhance" class="text_pole" min="0" max="8000" step="100" value="${Number.isFinite(Number(s.maxTokensEnhance)) ? Number(s.maxTokensEnhance) : 1500}">
                             </label>
                             <label style="display: flex; flex-direction: column; gap: 2px;">
-                                <span style="font-size: 12px; color: #cbd5e1;">${escapeHtml(t('set_max_tokens_context'))}</span>
+                                <span style="font-size: 12px; ">${escapeHtml(t('set_max_tokens_context'))}</span>
                                 <input type="number" id="bb-eg-cfg-mt-context" class="text_pole" min="0" max="8000" step="100" value="${Number.isFinite(Number(s.maxTokensContext)) ? Number(s.maxTokensContext) : 2000}">
                             </label>
                             <label style="display: flex; flex-direction: column; gap: 2px;">
-                                <span style="font-size: 12px; color: #cbd5e1;">${escapeHtml(t('set_max_tokens_micro'))}</span>
+                                <span style="font-size: 12px; ">${escapeHtml(t('set_max_tokens_micro'))}</span>
                                 <input type="number" id="bb-eg-cfg-mt-micro" class="text_pole" min="0" max="8000" step="100" value="${Number.isFinite(Number(s.maxTokensMicro)) ? Number(s.maxTokensMicro) : 500}">
                             </label>
                             <span style="font-size: 11px; line-height: 1.3;">${escapeHtml(t('set_max_tokens_hint'))}</span>
