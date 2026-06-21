@@ -1538,7 +1538,7 @@ document.addEventListener('click', (e) => {
                 // @ts-ignore
                 const url = $('#bb-eg-cfg-url').val().replace(/\/$/, '');
                 const key = $('#bb-eg-cfg-key').val();
-                btn.html('<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; ' + escapeHtml(t('loading')));
+                btn.html(escapeHtml(t('loading')));
 
                 try {
                     const response = await fetch(url + '/models', {
